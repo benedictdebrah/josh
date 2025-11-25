@@ -30,7 +30,8 @@ This repository contains the full project for developing a machine-learning mode
 
 2. **Feature Engineering**  
    - Aggregated hourly sensor readings into daily averages for a 7-day horizon  
-   - Calculated *min_days_left* across components and constructed the target label  
+   - Generated a failure-based target variable by computing the minimum remaining days across all components (min_days_left) and labeling pumps with ≤ 7 days remaining as imminent failures.
+   - Did not use the “run/stop” field as the target variable, because pumps can stop for routine reasons (maintenance, idle periods, operational pauses) that are not actual failures. Using “stop” would mislead the model, so a true       failure-based label was created instead. 
    - Removed leakage features (e.g., expected_life, days_left) to avoid trivial predictions  
    - Converted both pump datasets into a long format with a `pump_id` column  
 
